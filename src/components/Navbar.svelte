@@ -18,7 +18,7 @@
     pathname === path || (path !== '/' && pathname.startsWith(path));
 </script>
 
-<nav class="sticky top-0 z-50 w-full border-b border-neutral-200">
+<nav class="sticky top-0 z-50 w-full border-b border-neutral-200 bg-white/70 backdrop-blur-2xl">
   <div class="mx-auto max-w-7xl px-4 sm:px-0">
     <div class="flex h-24 items-center justify-between">
       <!-- Logo -->
