@@ -1,9 +1,3 @@
-<!--
-File: src/routes/characters/+page.svelte
-Description: Characters index with search + filters (name, job, crew, bounty), responsive grid cards, and modal details.
-Tailwind container: max-w-7xl px-4 sm:px-0 per your guideline.
-Note: The public API has CORS disabled, so fetch via the proxy below (/api/op). Swap BASE for direct URL if you run server-side only.
--->
 <script lang="ts">
   import { onMount } from 'svelte';
 
