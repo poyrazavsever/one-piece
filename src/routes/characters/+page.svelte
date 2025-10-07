@@ -254,7 +254,7 @@
   {#if loading}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {#each Array(8) as _, i}
-        <div class="rounded-2xl border border-neutral-200 bg-white p-4 animate-pulse">
+        <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-4 animate-pulse">
           <div class="h-5 w-2/3 bg-neutral-200 rounded"></div>
           <div class="mt-3 h-3 w-1/2 bg-neutral-200 rounded"></div>
           <div class="mt-4 h-24 w-full bg-neutral-100 rounded"></div>
@@ -267,7 +267,7 @@
     {:else}
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {#each characters as c}
-          <button class="group text-left rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow" on:click={() => (selected = c)}>
+          <button class="group text-left rounded-2xl border border-neutral-200 bg-white p-4 transition-all hover:border-neutral-300 hover:bg-neutral-50" on:click={() => (selected = c)}>
             <!-- Avatar -->
             <div class="flex items-center gap-3 mb-3">
               <div class="w-12 h-12 rounded-full {getCharacterAvatar(c)} flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
@@ -309,7 +309,7 @@
   <div class="fixed inset-0 z-50">
     <div class="absolute inset-0 bg-black/40" on:click={() => (selected = null)}></div>
     <div class="absolute inset-x-0 bottom-0 md:inset-0 md:flex md:items-center md:justify-center">
-      <div class="mx-auto max-w-2xl w-full md:w-[720px] md:rounded-2xl md:shadow-2xl md:my-10 bg-white border md:border-neutral-200">
+      <div class="mx-auto max-w-2xl w-full md:w-[720px] md:rounded-2xl md:my-10 bg-white border md:border-neutral-300">
         <div class="flex items-start justify-between gap-3 p-4 md:p-5 border-b">
           <div class="flex items-center gap-3">
             <div class="w-16 h-16 rounded-full {getCharacterAvatar(selected)} flex items-center justify-center text-white font-semibold text-lg flex-shrink-0">
