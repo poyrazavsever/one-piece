@@ -153,11 +153,6 @@
 <section class="relative bg-gradient-to-br from-blue-50 via-white to-orange-50">
   <div class="mx-auto max-w-7xl px-4 sm:px-0 pt-12 pb-8">
     <div class="text-center">
-      <!-- Avatar -->
-      <div class="mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white font-bold text-3xl mb-6">
-        P
-      </div>
-      
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-800">
         Poyraz'ın Yorumları
       </h1>
