@@ -37,7 +37,7 @@
   };
 
   // ---- Config ----
-  const BASE = '/api/op';
+  const BASE = 'https://api.api-onepiece.com';
   const ENDPOINTS = {
     characters: `${BASE}/v2/characters/en`,
     charactersSearch: `${BASE}/v2/characters/en/search`,
@@ -80,6 +80,21 @@
     // API stores bounty as string; allow formats like "3,000,000,000" or "3.000.000.000" or with Beli symbol
     const digits = val.replace(/[^0-9]/g, '');
     return digits ? Number(digits) : null;
+  }
+
+  function getCharacterAvatar(character: Character): string {
+    // Generate a colorful avatar based on character name
+    const colors = [
+      'bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-yellow-500', 
+      'bg-purple-500', 'bg-pink-500', 'bg-indigo-500', 'bg-orange-500'
+    ];
+    const initials = character.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+    const colorIndex = character.id % colors.length;
+    return colors[colorIndex];
+  }
+
+  function getCharacterInitials(character: Character): string {
+    return character.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
   }
 
   function withinBountyRange(c: Character): boolean {
@@ -193,7 +208,7 @@
       </div>
       <div class="md:col-span-3">
         <label class="block text-xs font-medium text-neutral-600 mb-1">Tayfa</label>
-        <select class="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-300" bind:value={qCrewId} on:change={loadCharacters}>
+        <select class="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-300" bind:value={qCrewId} on:change={() => loadCharacters()}>
           <option value="">Hepsi</option>
           {#each crews as c}
             <option value={c.id}>{c.name}</option>
@@ -253,12 +268,19 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {#each characters as c}
           <button class="group text-left rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow" on:click={() => (selected = c)}>
-            <div class="flex items-start justify-between gap-3">
-              <h3 class="text-base font-semibold text-neutral-900 group-hover:underline">{c.name}</h3>
-              {#if c.crew?.name}
-                <span class="inline-flex shrink-0 items-center rounded-full border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[11px] text-neutral-700">{c.crew.name}</span>
-              {/if}
+            <!-- Avatar -->
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 rounded-full {getCharacterAvatar(c)} flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+                {getCharacterInitials(c)}
+              </div>
+              <div class="min-w-0 flex-1">
+                <h3 class="text-base font-semibold text-neutral-900 group-hover:underline truncate">{c.name}</h3>
+                {#if c.crew?.name}
+                  <span class="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[11px] text-neutral-700 mt-1">{c.crew.name}</span>
+                {/if}
+              </div>
             </div>
+            
             <p class="mt-1 text-sm text-neutral-600 line-clamp-2">{c.job ?? '—'}</p>
             <div class="mt-3 grid grid-cols-2 gap-2 text-xs text-neutral-700">
               <div class="rounded-lg border bg-neutral-50 p-2">
@@ -289,9 +311,14 @@
     <div class="absolute inset-x-0 bottom-0 md:inset-0 md:flex md:items-center md:justify-center">
       <div class="mx-auto max-w-2xl w-full md:w-[720px] md:rounded-2xl md:shadow-2xl md:my-10 bg-white border md:border-neutral-200">
         <div class="flex items-start justify-between gap-3 p-4 md:p-5 border-b">
-          <div>
-            <h3 class="text-lg font-semibold text-neutral-900">{selected.name}</h3>
-            <p class="text-sm text-neutral-600">{selected.job ?? '—'}</p>
+          <div class="flex items-center gap-3">
+            <div class="w-16 h-16 rounded-full {getCharacterAvatar(selected)} flex items-center justify-center text-white font-semibold text-lg flex-shrink-0">
+              {getCharacterInitials(selected)}
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-neutral-900">{selected.name}</h3>
+              <p class="text-sm text-neutral-600">{selected.job ?? '—'}</p>
+            </div>
           </div>
           <button class="rounded-lg p-2 hover:bg-neutral-100" on:click={() => (selected = null)} aria-label="Kapat">✕</button>
         </div>
