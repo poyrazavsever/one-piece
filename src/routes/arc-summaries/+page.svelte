@@ -102,7 +102,7 @@
   {#if loading}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {#each Array(6) as _, i}
-        <div class="rounded-2xl border border-neutral-200 bg-white p-6 animate-pulse">
+        <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 animate-pulse">
           <div class="h-6 w-3/4 bg-neutral-200 rounded mb-4"></div>
           <div class="h-4 w-1/2 bg-neutral-200 rounded mb-2"></div>
           <div class="h-4 w-2/3 bg-neutral-200 rounded mb-2"></div>
@@ -117,7 +117,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {#each sagas as saga}
           <button 
-            class="group text-left rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+            class="group text-left rounded-2xl border border-neutral-200 bg-white p-6 transition-all hover:border-neutral-300 hover:bg-neutral-50"
             on:click={() => (selected = saga)}
           >
             <!-- Saga Number Badge -->
@@ -168,7 +168,7 @@
   <div class="fixed inset-0 z-50">
     <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" on:click={() => (selected = null)} role="button" tabindex="-1" on:keydown={(e) => e.key === 'Escape' && (selected = null)}></div>
     <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-0 md:flex md:items-center md:justify-center">
-      <div class="mx-auto max-w-2xl w-full md:w-[600px] rounded-2xl shadow-2xl bg-white border border-neutral-200">
+      <div class="mx-auto max-w-2xl w-full md:w-[600px] rounded-2xl bg-white border border-neutral-300">
         <!-- Header -->
         <div class="relative p-6 border-b border-neutral-200">
           <div class="flex items-center gap-4">
